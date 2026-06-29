@@ -11,22 +11,47 @@ const localeHref: Record<Lang, string> = {
 };
 ---
 
-<nav aria-label="Language switcher" class="flex gap-2 text-sm">
-  {
-    (Object.keys(languages) as Lang[]).map((lang) => (
-      <a
-        href={localeHref[lang]}
-        hreflang={lang}
-        aria-current={lang === current ? "true" : undefined}
-        class:list={[
-          "rounded px-2 py-1 transition-colors",
-          lang === current
-            ? "bg-slate-900 text-white"
-            : "text-slate-600 hover:bg-slate-200",
-        ]}
-      >
-        {languages[lang]}
-      </a>
-    ))
-  }
-</nav>
+<details class="group relative text-sm">
+  <summary
+    class="flex cursor-pointer list-none items-center gap-1 rounded px-2 py-1 text-slate-700 hover:bg-slate-200"
+    aria-label="Language switcher"
+  >
+    <span>{languages[current]}</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="transition-transform group-open:rotate-180"
+    >
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </summary>
+  <nav
+    aria-label="Language switcher"
+    class="absolute right-0 z-10 mt-1 min-w-[8rem] rounded-md border border-slate-200 bg-white py-1 shadow-md"
+  >
+    {
+      (Object.keys(languages) as Lang[]).map((lang) => (
+        <a
+          href={localeHref[lang]}
+          hreflang={lang}
+          aria-current={lang === current ? "true" : undefined}
+          class:list={[
+            "block px-3 py-1.5 transition-colors",
+            lang === current
+              ? "font-semibold text-slate-900"
+              : "text-slate-600 hover:bg-slate-100",
+          ]}
+        >
+          {languages[lang]}
+        </a>
+      ))
+    }
+  </nav>
+</details>
