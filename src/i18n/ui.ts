@@ -17,8 +17,12 @@ export const ui = {
     "lang.switch": "Jazyk",
     "nav.contact": "Kontakt",
     "contact.title": "Kontakt",
-    "contact.intro": "Napíšte nám na nasledujúcu e-mailovú adresu:",
+    "contact.intro":
+      "Radi vám pomôžeme. Ozvite sa nám e-mailom alebo telefonicky.",
+    "contact.emailLabel": "E-mail",
     "contact.email": "kontakt@amp-systems.sk",
+    "contact.phoneLabel": "Telefón",
+    "contact.phone": "+421 915 425 052",
   },
   en: {
     "nav.home": "Home",
@@ -29,8 +33,11 @@ export const ui = {
     "lang.switch": "Language",
     "nav.contact": "Contact",
     "contact.title": "Contact",
-    "contact.intro": "Reach us at the following email address:",
+    "contact.intro": "We'd love to hear from you — reach us by email or phone.",
+    "contact.emailLabel": "Email",
     "contact.email": "contact@amp-systems.sk",
+    "contact.phoneLabel": "Phone",
+    "contact.phone": "+421 915 425 052",
   },
 } as const;
 
