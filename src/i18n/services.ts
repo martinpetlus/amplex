@@ -22,8 +22,9 @@ export const servicesContent: Record<
         id: "automation",
         title: "Priemyselná automatizácia a údržba",
         summary:
-          "Opravy a údržba automatizovaných liniek — programovanie PLC, diagnostika elektrických a snímačových porúch pre minimálne prestoje.",
+          "Návrh, stavba, opravy a údržba automatizovaných liniek — programovanie PLC a diagnostika elektrických a snímačových porúch.",
         items: [
+          "Návrh a stavba automatizovaných liniek na mieru podľa požiadaviek zákazníka",
           "Opravy a servis automatizovaných výrobných liniek",
           "Programovanie a modernizácia PLC (Siemens, Mitsubishi, Hitachi, Schneider)",
           "Diagnostika elektrických porúch a snímačov",
@@ -65,8 +66,9 @@ export const servicesContent: Record<
         id: "automation",
         title: "Industrial automation & maintenance",
         summary:
-          "Repairs and maintenance of automation lines — PLC programming, electrical and sensor diagnostics to minimize downtime.",
+          "Design, build, repair and maintenance of automation lines — PLC programming and electrical/sensor diagnostics.",
         items: [
+          "Design and build of custom automation lines to customer requirements",
           "Repairs and servicing of automated production lines",
           "PLC programming and retrofits (Siemens, Mitsubishi, Hitachi, Schneider)",
           "Electrical fault and sensor diagnostics",
