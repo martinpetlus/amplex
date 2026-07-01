@@ -17,6 +17,7 @@ export const ui = {
     "lang.switch": "Jazyk",
     "nav.contact": "Kontakt",
     "nav.services": "Služby",
+    "nav.about": "O nás",
     "nav.menu": "Menu",
     "contact.title": "Kontakt",
     "contact.intro":
@@ -36,6 +37,7 @@ export const ui = {
     "lang.switch": "Language",
     "nav.contact": "Contact",
     "nav.services": "Services",
+    "nav.about": "About",
     "nav.menu": "Menu",
     "contact.title": "Contact",
     "contact.intro": "We'd love to hear from you — reach us by email or phone.",

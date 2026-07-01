@@ -18,6 +18,7 @@ const servicesHref = getRelativeLocaleUrl(
   lang,
   lang === "sk" ? "sluzby" : "services",
 );
+const aboutHref = getRelativeLocaleUrl(lang, lang === "sk" ? "o-nas" : "about");
 const contactHref = getRelativeLocaleUrl(
   lang,
   lang === "sk" ? "kontakt" : "contact",
@@ -64,6 +65,7 @@ const contactHref = getRelativeLocaleUrl(
         <nav class="hidden items-center gap-4 text-sm sm:flex">
           <a href={homeHref} class="hover:underline">{t("nav.home")}</a>
           <a href={servicesHref} class="hover:underline">{t("nav.services")}</a>
+          <a href={aboutHref} class="hover:underline">{t("nav.about")}</a>
           <a href={contactHref} class="hover:underline">{t("nav.contact")}</a>
         </nav>
       </div>
@@ -118,6 +120,11 @@ const contactHref = getRelativeLocaleUrl(
               href={servicesHref}
               class="block px-3 py-1.5 text-slate-700 hover:bg-slate-100"
               >{t("nav.services")}</a
+            >
+            <a
+              href={aboutHref}
+              class="block px-3 py-1.5 text-slate-700 hover:bg-slate-100"
+              >{t("nav.about")}</a
             >
             <a
               href={contactHref}

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations } from "../../i18n/ui";
+import { teamContent } from "../../i18n/team";
+
+const t = useTranslations("en");
+const team = teamContent.en;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<BaseLayout title={`${team.title} | ${t("site.title")}`} wide>
+  <h1 class="text-4xl font-bold tracking-tight">{team.title}</h1>
+  <p class="mt-4 max-w-3xl text-lg text-slate-600">{team.intro}</p>
+
+  <div class="mt-10 grid gap-6 sm:grid-cols-3">
+    {
+      team.members.map((member) => (
+        <div class="flex flex-col items-center rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <img
+            src={`${base}${member.photo ?? "/avatar-placeholder.svg"}`}
+            alt={member.name}
+            width="128"
+            height="128"
+            class="h-32 w-32 rounded-full object-cover"
+          />
+          <h2 class="mt-4 text-lg font-semibold text-slate-900">
+            {member.name}
+          </h2>
+          <p class="mt-1 text-sm font-medium text-sky-600">{member.role}</p>
+          <ul class="mt-4 space-y-2 text-left text-sm text-slate-600">
+            {member.areas.map((area) => (
+              <li class="flex items-start gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="mt-0.5 shrink-0 text-sky-600"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>{area}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>
