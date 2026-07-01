@@ -2,11 +2,15 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
   // Default GitHub Pages project URL. Switch to your custom domain (and base: "/") later.
   site: "https://martinpetlus.github.io",
+
   base: "/amp-systems",
+
   i18n: {
     defaultLocale: "sk",
     locales: ["sk", "en"],
@@ -15,7 +19,20 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   vite: {
     plugins: [tailwindcss()],
   },
+
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: "sk",
+        locales: {
+          sk: "sk",
+          en: "en",
+        },
+      },
+    }),
+  ],
 });
