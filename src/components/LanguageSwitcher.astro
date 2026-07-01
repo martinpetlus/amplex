@@ -1,13 +1,19 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { languages, defaultLang, type Lang } from "../i18n/ui";
+import { routes, type RouteKey } from "../i18n/routes";
 
+interface Props {
+  page?: RouteKey;
+}
+
+const { page = "home" } = Astro.props;
 const current = (Astro.currentLocale ?? defaultLang) as Lang;
 
-// Map each locale to its home URL (base path + locale handled by Astro).
+// Link each locale to the equivalent of the current page (base + locale handled by Astro).
 const localeHref: Record<Lang, string> = {
-  sk: getRelativeLocaleUrl("sk", ""),
-  en: getRelativeLocaleUrl("en", ""),
+  sk: getRelativeLocaleUrl("sk", routes[page].sk),
+  en: getRelativeLocaleUrl("en", routes[page].en),
 };
 ---
 

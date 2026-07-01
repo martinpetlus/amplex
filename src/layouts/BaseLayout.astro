@@ -3,26 +3,22 @@ import "../styles/global.css";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 import { defaultLang, type Lang, useTranslations } from "../i18n/ui";
+import { routes, type RouteKey } from "../i18n/routes";
 
 interface Props {
   title?: string;
   wide?: boolean;
+  page?: RouteKey;
 }
 
 const lang = (Astro.currentLocale ?? defaultLang) as Lang;
 const t = useTranslations(lang);
-const { title = t("site.title"), wide = false } = Astro.props;
+const { title = t("site.title"), wide = false, page = "home" } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const homeHref = getRelativeLocaleUrl(lang, "");
-const servicesHref = getRelativeLocaleUrl(
-  lang,
-  lang === "sk" ? "sluzby" : "services",
-);
-const aboutHref = getRelativeLocaleUrl(lang, lang === "sk" ? "o-nas" : "about");
-const contactHref = getRelativeLocaleUrl(
-  lang,
-  lang === "sk" ? "kontakt" : "contact",
-);
+const homeHref = getRelativeLocaleUrl(lang, routes.home[lang]);
+const servicesHref = getRelativeLocaleUrl(lang, routes.services[lang]);
+const aboutHref = getRelativeLocaleUrl(lang, routes.about[lang]);
+const contactHref = getRelativeLocaleUrl(lang, routes.contact[lang]);
 ---
 
 <!doctype html>
@@ -70,7 +66,7 @@ const contactHref = getRelativeLocaleUrl(
         </nav>
       </div>
       <div class="flex items-center gap-2">
-        <LanguageSwitcher />
+        <LanguageSwitcher page={page} />
         <details class="group relative sm:hidden">
           <summary
             class="flex cursor-pointer list-none items-center rounded p-1 text-slate-700 hover:bg-slate-200"

@@ -10,7 +10,11 @@ const services = servicesContent.en;
 const contactHref = getRelativeLocaleUrl("en", "contact");
 ---
 
-<BaseLayout title={`${services.title} | ${t("site.title")}`} wide>
+<BaseLayout
+  title={`${services.title} | ${t("site.title")}`}
+  wide
+  page="services"
+>
   <h1 class="text-4xl font-bold tracking-tight">{services.title}</h1>
   <p class="mt-4 max-w-3xl text-lg text-slate-600">{services.intro}</p>
 
