@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServicesGrid from "../components/ServicesGrid.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "../i18n/ui";
+import { servicesContent } from "../i18n/services";
+
+const t = useTranslations("sk");
+const services = servicesContent.sk;
+const contactHref = getRelativeLocaleUrl("sk", "kontakt");
+---
+
+<BaseLayout title={`${services.title} | ${t("site.title")}`} wide>
+  <h1 class="text-4xl font-bold tracking-tight">{services.title}</h1>
+  <p class="mt-4 max-w-3xl text-lg text-slate-600">{services.intro}</p>
+
+  <div class="mt-10">
+    <ServicesGrid lang="sk" detailed />
+  </div>
+
+  <div class="mt-10">
+    <a
+      href={contactHref}
+      class="inline-flex items-center gap-1 rounded-lg bg-slate-900 px-5 py-2.5 font-medium text-white transition hover:bg-slate-700"
+    >
+      {t("nav.contact")}
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</BaseLayout>
