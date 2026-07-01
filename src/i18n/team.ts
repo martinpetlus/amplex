@@ -40,7 +40,8 @@ export const teamContent: Record<
         role: "AI a softvérové riešenia",
         areas: [
           "AI chatboty a asistenti",
-          "Integrácia OpenAI a jazykových modelov",
+          "Integrácia AI a jazykových modelov",
+          "Strojové učenie",
           "Webové aplikácie",
           "Softvér na mieru",
         ],
@@ -83,7 +84,8 @@ export const teamContent: Record<
         role: "AI & software solutions",
         areas: [
           "AI chatbots and assistants",
-          "OpenAI and language model integration",
+          "AI and language model integration",
+          "Machine learning",
           "Web applications",
           "Custom software",
         ],
