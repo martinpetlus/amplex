@@ -6,10 +6,10 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  // Default GitHub Pages project URL. Switch to your custom domain (and base: "/") later.
-  site: "https://martinpetlus.github.io",
+  // Custom domain served from the site root.
+  site: "https://ampert.sk",
 
-  base: "/ampert",
+  base: "/",
 
   i18n: {
     defaultLocale: "sk",
