@@ -27,7 +27,7 @@ export const teamContent: Record<
         initials: "AP",
         role: "Dátové inžinierstvo a cloud",
         areas: [
-          "Dátové pipeline (Azure, Databricks, SQL)",
+          "Dátové pipeline (AWS, Azure, SQL)",
           "Dashboardy a vizualizácia dát",
           "DevOps a CI/CD",
           "Cloudová infraštruktúra",
@@ -71,7 +71,7 @@ export const teamContent: Record<
         initials: "AP",
         role: "Data engineering & cloud",
         areas: [
-          "Data pipelines (Azure, Databricks, SQL)",
+          "Data pipelines (AWS, Azure, SQL)",
           "Dashboards and data visualization",
           "DevOps and CI/CD",
           "Cloud infrastructure",

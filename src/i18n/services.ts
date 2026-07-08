@@ -38,7 +38,7 @@ export const servicesContent: Record<
           "Zber dát z výroby a strojov premieňame na grafy, prehľadové dashboardy a reporty pre okamžitý prehľad o prevádzke.",
         items: [
           "Zber dát zo strojov a snímačov (SCADA – Promotic, WinCC)",
-          "Dátové pipeline a spracovanie (Azure, Databricks, SQL)",
+          "Dátové pipeline a spracovanie (AWS, Azure, SQL)",
           "Dashboardy, grafy a reporty v reálnom čase",
           "Sledovanie výkonu liniek, kvality a OEE",
         ],
@@ -82,7 +82,7 @@ export const servicesContent: Record<
           "We turn machine and production data into graphs, dashboards and reports for real-time insight into your operations.",
         items: [
           "Data collection from machines and sensors (SCADA – Promotic, WinCC)",
-          "Data pipelines and processing (Azure, Databricks, SQL)",
+          "Data pipelines and processing (AWS, Azure, SQL)",
           "Real-time dashboards, graphs and reports",
           "Monitoring of line performance, quality and OEE",
         ],
