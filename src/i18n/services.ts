@@ -29,6 +29,8 @@ export const servicesContent: Record<
           "Programovanie a modernizácia PLC (Siemens, Mitsubishi, Hitachi, Schneider)",
           "Diagnostika elektrických porúch a snímačov",
           "Pneumatické systémy a elektroinštalácie",
+          "Servis priemyselných počítačov",
+          "IT infraštruktúra vo výrobe",
         ],
       },
       {
@@ -73,6 +75,8 @@ export const servicesContent: Record<
           "PLC programming and retrofits (Siemens, Mitsubishi, Hitachi, Schneider)",
           "Electrical fault and sensor diagnostics",
           "Pneumatic systems and electrical installations",
+          "Industrial computer servicing",
+          "IT infrastructure in production",
         ],
       },
       {
