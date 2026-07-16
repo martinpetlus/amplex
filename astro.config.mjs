@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   // Custom domain served from the site root.
-  site: "https://ampert.sk",
+  site: "https://amplex.sk",
 
   base: "/",
 

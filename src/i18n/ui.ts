@@ -10,10 +10,10 @@ export const defaultLang: Lang = "sk";
 export const ui = {
   sk: {
     "nav.home": "Domov",
-    "site.title": "AMPERT",
+    "site.title": "Amplex",
     "site.description":
       "Priemyselná automatizácia, opravy výrobných liniek, spracovanie dát a AI riešenia pre výrobné firmy.",
-    "hero.title": "Vitajte v AMPERT",
+    "hero.title": "Vitajte v Amplex",
     "hero.subtitle":
       "Udržiavame vaše výrobné linky v chode a meníme ich dáta na prehľadné informácie a AI riešenia.",
     "lang.switch": "Jazyk",
@@ -25,15 +25,15 @@ export const ui = {
     "contact.intro":
       "Radi vám pomôžeme. Ozvite sa nám e-mailom alebo telefonicky.",
     "contact.emailLabel": "E-mail",
-    "contact.email": "kontakt@ampert.sk",
+    "contact.email": "kontakt@amplex.sk",
     "contact.phoneLabel": "Telefón",
     "contact.phone": "+421 915 425 052",
     "contact.copy": "Kopírovať",
     "contact.copied": "Skopírované",
-    "contact.mailSubject": "Dopyt z webu AMPERT",
+    "contact.mailSubject": "Dopyt z webu Amplex",
     "contact.mailBody": "Dobrý deň,\n\n",
     "contact.companyNameLabel": "Obchodné meno",
-    "contact.companyName": "AMPERT s. r. o.",
+    "contact.companyName": "Amplex s. r. o.",
     "contact.icoLabel": "IČO",
     "contact.ico": "00 000 000",
     "contact.dicLabel": "DIČ",
@@ -47,10 +47,10 @@ export const ui = {
   },
   en: {
     "nav.home": "Home",
-    "site.title": "AMPERT",
+    "site.title": "Amplex",
     "site.description":
       "Industrial automation, production line repairs, data processing and AI solutions for manufacturing companies.",
-    "hero.title": "Welcome to AMPERT",
+    "hero.title": "Welcome to Amplex",
     "hero.subtitle":
       "We keep your production lines running and turn their data into clear insights and AI solutions.",
     "lang.switch": "Language",
@@ -61,15 +61,15 @@ export const ui = {
     "contact.title": "Contact",
     "contact.intro": "We'd love to hear from you — reach us by email or phone.",
     "contact.emailLabel": "Email",
-    "contact.email": "contact@ampert.sk",
+    "contact.email": "contact@amplex.sk",
     "contact.phoneLabel": "Phone",
     "contact.phone": "+421 915 425 052",
     "contact.copy": "Copy",
     "contact.copied": "Copied",
-    "contact.mailSubject": "Inquiry from the AMPERT website",
+    "contact.mailSubject": "Inquiry from the Amplex website",
     "contact.mailBody": "Hello,\n\n",
     "contact.companyNameLabel": "Company name",
-    "contact.companyName": "AMPERT s. r. o.",
+    "contact.companyName": "Amplex s. r. o.",
     "contact.icoLabel": "Company ID (IČO)",
     "contact.ico": "00 000 000",
     "contact.dicLabel": "Tax ID (DIČ)",
