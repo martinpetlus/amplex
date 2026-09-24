@@ -29,6 +29,7 @@ export const teamContent: Record<
         areas: [
           "Dátové pipeline (AWS, Azure, SQL)",
           "Dashboardy a vizualizácia dát",
+          "UX dizajn",
           "DevOps a CI/CD",
           "Cloudová infraštruktúra",
         ],
@@ -73,6 +74,7 @@ export const teamContent: Record<
         areas: [
           "Data pipelines (AWS, Azure, SQL)",
           "Dashboards and data visualization",
+          "UX design",
           "DevOps and CI/CD",
           "Cloud infrastructure",
         ],
