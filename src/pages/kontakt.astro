@@ -17,12 +17,8 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
   <p class="mt-4 text-lg text-slate-600">{t("contact.intro")}</p>
 
   <div class="mt-8 grid gap-4 sm:grid-cols-2">
-    <div
-      class="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
-    >
-      <span
-        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600"
-      >
+    <div class="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -34,20 +30,19 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
           stroke-linecap="round"
           stroke-linejoin="round"
         >
-          <path
-            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
-          ></path>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"></path>
         </svg>
       </span>
       <div class="min-w-0 flex-1">
-        <span class="block text-sm font-medium text-slate-500"
-          >{t("contact.phoneLabel")}</span
-        >
+        <span class="block text-sm font-medium text-slate-500">
+          {t("contact.phoneLabel")}
+        </span>
         <a
           href={`tel:${t("contact.phone").replace(/\s+/g, "")}`}
           class="block truncate font-semibold text-slate-900 hover:text-sky-700"
-          >{t("contact.phone")}</a
         >
+          {t("contact.phone")}
+        </a>
       </div>
       <button
         type="button"
@@ -71,8 +66,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
           stroke-linejoin="round"
         >
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-          ></path>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
         </svg>
         <svg
           class="check-icon hidden text-green-600"
@@ -91,12 +85,8 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
       </button>
     </div>
 
-    <div
-      class="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
-    >
-      <span
-        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600"
-      >
+    <div class="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -113,14 +103,15 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
         </svg>
       </span>
       <div class="min-w-0 flex-1">
-        <span class="block text-sm font-medium text-slate-500"
-          >{t("contact.emailLabel")}</span
-        >
+        <span class="block text-sm font-medium text-slate-500">
+          {t("contact.emailLabel")}
+        </span>
         <a
           href={mailtoHref}
           class="block truncate font-semibold text-slate-900 hover:text-sky-700"
-          >{t("contact.email")}</a
         >
+          {t("contact.email")}
+        </a>
       </div>
       <button
         type="button"
@@ -144,8 +135,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
           stroke-linejoin="round"
         >
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
-          ></path>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
         </svg>
         <svg
           class="check-icon hidden text-green-600"
@@ -165,9 +155,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
     </div>
   </div>
 
-  <section
-    class="mt-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
-  >
+  <section class="mt-8 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
     <dl class="grid gap-3 sm:grid-cols-3">
       <div>
         <dt class="text-sm text-slate-500">{t("contact.companyNameLabel")}</dt>

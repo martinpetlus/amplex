@@ -60,11 +60,9 @@ const year = new Date().getFullYear();
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {
-      alternates.map((alt) => (
-        <link rel="alternate" hreflang={alt.locale} href={alt.href} />
-      ))
-    }
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+    ))}
     <link
       rel="alternate"
       hreflang="x-default"
@@ -85,9 +83,7 @@ const year = new Date().getFullYear();
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="flex min-h-screen flex-col bg-slate-50 text-slate-900">
-    <header
-      class="flex items-center justify-between border-b border-slate-200 px-6 py-4"
-    >
+    <header class="flex items-center justify-between border-b border-slate-200 px-6 py-4">
       <div class="flex items-center gap-6">
         <a href={homeHref} class="flex items-center gap-2 font-semibold">
           <img
@@ -100,10 +96,18 @@ const year = new Date().getFullYear();
           <span class="text-lg">{t("site.title")}</span>
         </a>
         <nav class="hidden items-center gap-4 text-sm sm:flex">
-          <a href={homeHref} class="hover:underline">{t("nav.home")}</a>
-          <a href={servicesHref} class="hover:underline">{t("nav.services")}</a>
-          <a href={aboutHref} class="hover:underline">{t("nav.about")}</a>
-          <a href={contactHref} class="hover:underline">{t("nav.contact")}</a>
+          <a href={homeHref} class="hover:underline">
+            {t("nav.home")}
+          </a>
+          <a href={servicesHref} class="hover:underline">
+            {t("nav.services")}
+          </a>
+          <a href={aboutHref} class="hover:underline">
+            {t("nav.about")}
+          </a>
+          <a href={contactHref} class="hover:underline">
+            {t("nav.contact")}
+          </a>
         </nav>
       </div>
       <div class="flex items-center gap-2">
@@ -124,24 +128,41 @@ const year = new Date().getFullYear();
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="3" y1="6" x2="21" y2="6" class="group-open:hidden"
+              <line
+                x1="3"
+                y1="6"
+                x2="21"
+                y2="6"
+                class="group-open:hidden"
               ></line>
-              <line x1="3" y1="12" x2="21" y2="12" class="group-open:hidden"
+              <line
+                x1="3"
+                y1="12"
+                x2="21"
+                y2="12"
+                class="group-open:hidden"
               ></line>
-              <line x1="3" y1="18" x2="21" y2="18" class="group-open:hidden"
+              <line
+                x1="3"
+                y1="18"
+                x2="21"
+                y2="18"
+                class="group-open:hidden"
               ></line>
               <line
                 x1="6"
                 y1="6"
                 x2="18"
                 y2="18"
-                class="hidden group-open:block"></line>
+                class="hidden group-open:block"
+              ></line>
               <line
                 x1="6"
                 y1="18"
                 x2="18"
                 y2="6"
-                class="hidden group-open:block"></line>
+                class="hidden group-open:block"
+              ></line>
             </svg>
           </summary>
           <nav
@@ -151,23 +172,27 @@ const year = new Date().getFullYear();
             <a
               href={homeHref}
               class="block px-3 py-1.5 text-slate-700 hover:bg-slate-100"
-              >{t("nav.home")}</a
             >
+              {t("nav.home")}
+            </a>
             <a
               href={servicesHref}
               class="block px-3 py-1.5 text-slate-700 hover:bg-slate-100"
-              >{t("nav.services")}</a
             >
+              {t("nav.services")}
+            </a>
             <a
               href={aboutHref}
               class="block px-3 py-1.5 text-slate-700 hover:bg-slate-100"
-              >{t("nav.about")}</a
             >
+              {t("nav.about")}
+            </a>
             <a
               href={contactHref}
               class="block px-3 py-1.5 text-slate-700 hover:bg-slate-100"
-              >{t("nav.contact")}</a
             >
+              {t("nav.contact")}
+            </a>
           </nav>
         </details>
       </div>
@@ -176,19 +201,23 @@ const year = new Date().getFullYear();
       <slot />
     </main>
     <footer class="border-t border-slate-200">
-      <div
-        class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 py-8 text-sm text-slate-500 sm:flex-row sm:justify-between"
-      >
-        <p>&copy; {year} {t("contact.companyName")} {t("footer.rights")}</p>
+      <div class="mx-auto flex max-w-5xl flex-col items-center gap-4 px-6 py-8 text-sm text-slate-500 sm:flex-row sm:justify-between">
+        <p>
+          &copy; {year} {t("contact.companyName")} {t("footer.rights")}
+        </p>
         <nav class="flex flex-wrap items-center justify-center gap-4">
-          <a href={homeHref} class="hover:text-slate-900">{t("nav.home")}</a>
-          <a href={servicesHref} class="hover:text-slate-900"
-            >{t("nav.services")}</a
-          >
-          <a href={aboutHref} class="hover:text-slate-900">{t("nav.about")}</a>
-          <a href={contactHref} class="hover:text-slate-900"
-            >{t("nav.contact")}</a
-          >
+          <a href={homeHref} class="hover:text-slate-900">
+            {t("nav.home")}
+          </a>
+          <a href={servicesHref} class="hover:text-slate-900">
+            {t("nav.services")}
+          </a>
+          <a href={aboutHref} class="hover:text-slate-900">
+            {t("nav.about")}
+          </a>
+          <a href={contactHref} class="hover:text-slate-900">
+            {t("nav.contact")}
+          </a>
         </nav>
       </div>
     </footer>
