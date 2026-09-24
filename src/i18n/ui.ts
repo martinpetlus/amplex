@@ -13,6 +13,7 @@ export const ui = {
     "site.title": "Amplex",
     "site.description":
       "Priemyselná automatizácia, opravy výrobných liniek, spracovanie dát a AI riešenia pre výrobné firmy.",
+    "site.motto": "Od snímača až po report.",
     "hero.title": "Vitajte v Amplex",
     "hero.subtitle":
       "Udržiavame vaše výrobné linky v chode a meníme ich dáta na prehľadné informácie a AI riešenia.",
@@ -50,6 +51,7 @@ export const ui = {
     "site.title": "Amplex",
     "site.description":
       "Industrial automation, production line repairs, data processing and AI solutions for manufacturing companies.",
+    "site.motto": "From sensor to report.",
     "hero.title": "Welcome to Amplex",
     "hero.subtitle":
       "We keep your production lines running and turn their data into clear insights and AI solutions.",
