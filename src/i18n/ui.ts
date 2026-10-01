@@ -36,9 +36,7 @@ export const ui = {
     "contact.companyNameLabel": "Obchodné meno",
     "contact.companyName": "Amplex s. r. o.",
     "contact.icoLabel": "IČO",
-    "contact.ico": "00 000 000",
-    "contact.dicLabel": "DIČ",
-    "contact.dic": "0000000000",
+    "contact.ico": "57 920 222",
     "services.home.cta": "Zobraziť všetky služby",
     "notFound.title": "Stránka sa nenašla",
     "notFound.message":
@@ -73,9 +71,7 @@ export const ui = {
     "contact.companyNameLabel": "Company name",
     "contact.companyName": "Amplex s. r. o.",
     "contact.icoLabel": "Company ID (IČO)",
-    "contact.ico": "00 000 000",
-    "contact.dicLabel": "Tax ID (DIČ)",
-    "contact.dic": "0000000000",
+    "contact.ico": "57 920 222",
     "services.home.cta": "View all services",
     "notFound.title": "Page not found",
     "notFound.message":
