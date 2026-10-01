@@ -15,6 +15,10 @@ const localeHref: Record<Lang, string> = {
   sk: getRelativeLocaleUrl("sk", routes[page].sk),
   en: getRelativeLocaleUrl("en", routes[page].en),
 };
+const flags: Record<Lang, string> = {
+  sk: "🇸🇰",
+  en: "🇬🇧",
+};
 ---
 
 <details class="group relative text-sm">
@@ -22,6 +26,7 @@ const localeHref: Record<Lang, string> = {
     class="flex cursor-pointer list-none items-center gap-1 rounded px-2 py-1 text-slate-700 hover:bg-slate-200"
     aria-label="Language switcher"
   >
+    <span aria-hidden="true">{flags[current]}</span>
     <span>{languages[current]}</span>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +59,9 @@ const localeHref: Record<Lang, string> = {
             : "text-slate-600 hover:bg-slate-100",
         ]}
       >
+        <span aria-hidden="true" class="mr-2">
+          {flags[lang]}
+        </span>
         {languages[lang]}
       </a>
     ))}
