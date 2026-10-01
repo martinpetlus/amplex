@@ -18,7 +18,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
 
   <div class="mt-8 grid gap-4 sm:grid-cols-2">
     <div class="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -39,7 +39,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
         </span>
         <a
           href={`tel:${t("contact.phone").replace(/\s+/g, "")}`}
-          class="block truncate font-semibold text-slate-900 hover:text-sky-700"
+          class="block truncate font-semibold text-brand-primary hover:text-brand-secondary"
         >
           {t("contact.phone")}
         </a>
@@ -86,7 +86,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
     </div>
 
     <div class="flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="22"
@@ -108,7 +108,7 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
         </span>
         <a
           href={mailtoHref}
-          class="block truncate font-semibold text-slate-900 hover:text-sky-700"
+          class="block truncate font-semibold text-brand-primary hover:text-brand-secondary"
         >
           {t("contact.email")}
         </a>
@@ -159,15 +159,17 @@ const mailtoHref = `mailto:${t("contact.email")}?subject=${encodeURIComponent(
     <dl class="grid gap-3 sm:grid-cols-3">
       <div>
         <dt class="text-sm text-slate-500">{t("contact.companyNameLabel")}</dt>
-        <dd class="font-semibold text-slate-900">{t("contact.companyName")}</dd>
+        <dd class="font-semibold text-brand-primary">
+          {t("contact.companyName")}
+        </dd>
       </div>
       <div>
         <dt class="text-sm text-slate-500">{t("contact.icoLabel")}</dt>
-        <dd class="font-semibold text-slate-900">{t("contact.ico")}</dd>
+        <dd class="font-semibold text-brand-primary">{t("contact.ico")}</dd>
       </div>
       <div>
         <dt class="text-sm text-slate-500">{t("contact.dicLabel")}</dt>
-        <dd class="font-semibold text-slate-900">{t("contact.dic")}</dd>
+        <dd class="font-semibold text-brand-primary">{t("contact.dic")}</dd>
       </div>
     </dl>
   </section>

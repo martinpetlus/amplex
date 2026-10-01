@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #6d28d9;
+  --color-brand-secondary: #2563eb;
+}
+
+h1,
+h2,
+h3 {
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-brand-primary),
+    var(--color-brand-secondary)
+  );
+  background-clip: text;
+}

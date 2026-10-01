@@ -13,7 +13,7 @@ const contactHref = getRelativeLocaleUrl("sk", routes.contact.sk);
 ---
 
 <BaseLayout>
-  <p class="mb-4 text-sm font-semibold tracking-[0.12em] text-sky-700 uppercase">
+  <p class="mb-4 text-sm font-semibold tracking-[0.12em] text-brand-primary uppercase">
     {t("site.motto")}
   </p>
   <h1 class="text-4xl font-bold tracking-tight">{t("hero.title")}</h1>
@@ -22,14 +22,14 @@ const contactHref = getRelativeLocaleUrl("sk", routes.contact.sk);
   <div class="mt-8 flex flex-wrap gap-3">
     <a
       href={contactHref}
-      class="inline-flex items-center gap-1 rounded-lg bg-slate-900 px-5 py-2.5 font-medium text-white transition hover:bg-slate-700"
+      class="inline-flex items-center gap-1 rounded-lg bg-brand-primary px-5 py-2.5 font-medium text-white transition hover:bg-brand-secondary"
     >
       {t("nav.contact")}
       <span aria-hidden="true">→</span>
     </a>
     <a
       href={servicesHref}
-      class="inline-flex items-center rounded-lg border border-slate-300 px-5 py-2.5 font-medium text-slate-700 transition hover:bg-slate-100"
+      class="inline-flex items-center rounded-lg border border-brand-secondary px-5 py-2.5 font-medium text-brand-secondary transition hover:bg-blue-50"
     >
       {t("nav.services")}
     </a>
@@ -43,7 +43,7 @@ const contactHref = getRelativeLocaleUrl("sk", routes.contact.sk);
     </div>
     <a
       href={servicesHref}
-      class="mt-6 inline-flex items-center gap-1 font-medium text-sky-600 hover:text-sky-800"
+      class="mt-6 inline-flex items-center gap-1 font-medium text-brand-secondary hover:text-brand-primary"
     >
       {t("services.home.cta")}
       <span aria-hidden="true">→</span>
