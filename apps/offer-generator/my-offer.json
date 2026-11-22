@@ -1,0 +1,37 @@
+{
+  "offerNumber": "40260018",
+  "dateIssued": "23.11.2026",
+  "validUntil": "23.01.2027",
+  "recipient": {
+    "name": "KTK Packaging s.r.o.",
+    "address": "Farská 25",
+    "city": "949 01 Nitra",
+    "country": "Slovenská republika",
+    "ico": "44903022",
+    "dic": "2022864338",
+    "icDph": "SK2022864338"
+  },
+  "items": [
+    {
+      "name": "Siemens SIMATIC HMI MTP700, Unified Comfort Panel, touch operation, 7\" display",
+      "quantity": 1,
+      "unit": "ks",
+      "price": 1180,
+      "description": ""
+    },
+    {
+      "name": "IBH Link S7 -ETHERNET / MPI prevodník",
+      "quantity": 1,
+      "unit": "ks",
+      "price": 520,
+      "description": ""
+    },
+    {
+      "name": "Výmena a sprevádzkovanie panela",
+      "quantity": 1,
+      "unit": "služba",
+      "price": 1600,
+      "description": "Demontáž starého panela, stiahnutie a migrácia softvéru, preprogramovanie, overenie a test nového modelu, montáž."
+    }
+  ]
+}
