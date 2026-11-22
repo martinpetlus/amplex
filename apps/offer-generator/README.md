@@ -22,7 +22,7 @@ Aplikácia vás interaktívne prevedie procesom vytvárania cennej ponuky:
 
 1. Číslo ponuky
 2. Dátumy (vystavenia a platnosti)
-3. Údaje o odberateľovi (názov, adresa, IČO, DIČ)
+3. Údaje o odberateľovi (názov, adresa, IČO, DIČ, IČ DPH)
 4. Položky ponuky (názov, množstvo, jednotka, cena, popis)
 5. Názov výstupného súboru
 
@@ -73,7 +73,8 @@ Ako referenčný príklad slúži súbor [sample-offer.json](sample-offer.json).
     "city": "Mesto a PSČ",
     "country": "Krajina",
     "ico": "IČO",
-    "dic": "DIČ"
+    "dic": "DIČ",
+    "icDph": "SK1234567890"
   },
   "items": [
     {
@@ -86,6 +87,8 @@ Ako referenčný príklad slúži súbor [sample-offer.json](sample-offer.json).
   ]
 }
 ```
+
+Pole `recipient.icDph` (IČ DPH) je voliteľné. Ak ho nevyplníte alebo vynecháte, v PDF sa nezobrazí.
 
 ### 3. Programatické použitie
 

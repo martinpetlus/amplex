@@ -66,6 +66,7 @@ async function main() {
     "Slovenská republika";
   const recipientICO = await question("IČO (voliteľné): ");
   const recipientDIC = await question("DIČ (voliteľné): ");
+  const recipientICDPH = await question("IČ DPH (voliteľné): ");
 
   // Items
   console.log('\n📦 Položky ponuky (zadajte položky, ukonči s "done"):');
@@ -119,6 +120,7 @@ async function main() {
       country: recipientCountry,
       ico: recipientICO,
       dic: recipientDIC,
+      icDph: recipientICDPH,
     },
     items,
   };

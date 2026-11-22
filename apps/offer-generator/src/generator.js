@@ -163,6 +163,7 @@ export class OfferGenerator {
           .join("    "),
         size: 9,
       },
+      { text: recipient.icDph && `IČ DPH: ${recipient.icDph}`, size: 9 },
     ].filter((line) => line.text);
 
     const supplierBottom = this.drawAddressColumn(

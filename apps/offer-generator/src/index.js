@@ -14,6 +14,7 @@ import fs from "fs";
  * @param {string} offerData.recipient.country - Recipient country
  * @param {string} offerData.recipient.ico - Recipient IČO (optional)
  * @param {string} offerData.recipient.dic - Recipient DIČ (optional)
+ * @param {string} offerData.recipient.icDph - Recipient IČ DPH (optional)
  * @param {Array<Object>} offerData.items - Array of line items
  * @param {string} offerData.items[].name - Item name
  * @param {number} offerData.items[].quantity - Quantity
