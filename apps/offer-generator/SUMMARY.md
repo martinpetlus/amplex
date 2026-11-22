@@ -6,7 +6,7 @@ Vytvoril som kompletnú Node.js aplikáciu na generovanie cenových ponúk PDF p
 
 ## 🎯 Poskytnuté Features
 
-✅ **Automatické výpočty** - Suma bez DPH sa počíta automaticky  
+✅ **Automatické výpočty** - Celková suma sa počíta automaticky<br>
 ✅ **Bez DPH stĺpca** - Podľa požiadavky (bez DPH kolóny)  
 ✅ **Slovenský jazyk** - Všetky texty, dátumy, formáty sú v slovenčine  
 ✅ **Amplex údaje** - Vložené:
@@ -153,9 +153,8 @@ Každá ponuka obsahuje:
   - Poradové číslo
   - Názov a popis
   - Množstvo a jednotka
-  - Cena bez DPH
-  - Celková cena bez DPH
-- **Súhrn** - Spolu bez DPH v EUR
+  - Jedna cena za položku v stĺpci „CENA“
+- **Súhrn** - Spolu v EUR a informácia „Nie sme platcami DPH“
 - **Päta** - Právne informácie
 
 ## 🛠️ Príkazy

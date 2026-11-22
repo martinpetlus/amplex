@@ -78,7 +78,7 @@ await generateOffer(
 
 ## 🎯 Vlastnosti
 
-✅ Automatický výpočet sumy bez DPH  
+✅ Automatický výpočet celkovej sumy<br>
 ✅ Bez DPH stĺpca (podľa požiadavky)  
 ✅ Slovenčina - všetky texty a dátumy  
 ✅ Profesionálny layout s logom Amplex  
@@ -138,14 +138,9 @@ A: V interaktívnom režime alebo v JSON `dateIssued` a `validUntil`.
 **Q: Môžem vygenerovať bez interakcie?**  
 A: Áno, použite `generateOffer()` z `src/index.js` v svojom kóde.
 
-## 🔧 Troubleshooting
+## 🔤 Kódovanie znakov
 
-Ak sa znaky nezobrazia správne:
-
-```bash
-export LANG=sk_SK.UTF-8
-npm run dev
-```
+Vstupné JSON súbory používajte v UTF-8. V PDF sú vložené fonty Lato s podporou slovenských znakov.
 
 ## 📚 Viac informácií
 

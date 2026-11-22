@@ -81,7 +81,7 @@ async function main() {
     const quantity = parseFloat(await question("Množstvo: "));
     const unit =
       (await question("Jednotka (napr. ks, hod, m, m2) [ks]: ")) || "ks";
-    const price = parseFloat(await question("Cena bez DPH: "));
+    const price = parseFloat(await question("Cena: "));
     const description = await question("Popis (voliteľné): ");
 
     items.push({

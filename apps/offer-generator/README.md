@@ -120,7 +120,7 @@ await generateOffer(offerData, "./ponuka_40260001.pdf");
 
 ## Vlastnosti
 
-✅ Automatické vypočítavanie celkovej sumy bez DPH  
+✅ Automatické vypočítavanie celkovej sumy<br>
 ✅ Bez stĺpca DPH (podľa požiadavky)  
 ✅ Slovenčina - všetky texty a dátumy  
 ✅ Profesionálny layout s logom Amplex  
@@ -139,6 +139,9 @@ offer-generator/
 ├── README.md
 ├── .gitignore
 ├── sample-offer.json        # Príklad JSON ponuky
+├── assets/
+│   └── amplex-logo.png      # Logo pre hlavičku PDF
+├── fonts/                   # Vložené fonty Lato a licencia OFL
 ├── src/
 │   ├── index.js             # Exporty a API
 │   ├── cli.js               # Interaktívny režim
@@ -152,20 +155,19 @@ offer-generator/
 Ponuka obsahuje:
 
 - **Hlavičku** s logom Amplex a číslom ponuky
-- **Dodávateľa** - Amplex s. r. o. s kontaktnými údajmi
+- **Dodávateľa** - Amplex s. r. o. s kontaktnými údajmi a vektorovými ikonami telefónu, e-mailu a webu
 - **Odberateľa** - vložené z vašich vstupov
 - **Tabuľku položiek** s:
   - Poradovým číslom
   - Názvom položky
   - Množstvom a jednotkou
-  - Cenou bez DPH
-  - Celkovou cenou bez DPH
-- **Súhrn** - Celková suma bez DPH
+  - Jednou cenou za položku v stĺpci „CENA“
+- **Súhrn** - Celková suma a informácia „Nie sme platcami DPH“
 - **Pätu** so súpisom v registri
 
 ## Dependencie
 
-- **pdfkit** - Vygenerenie PDF s plnou podporou Unicode a Slovak znakov
+- **pdfkit + Lato** - Generovanie PDF s vloženou podporou slovenských znakov
 - **sharp** - Spracovanie obrázkov (ak v budúcnosti vložíme logo)
 
 ## Budúce vylepšenia
@@ -180,24 +182,9 @@ Ponuka obsahuje:
 
 ## Riešenie problémov
 
-### Kódovanie znakov a UTF-8 podpora
+### Kódovanie znakov
 
-Aplikácia podporuje UTF-8 kódovanie v JSON súboroch a interaktívnom režime. Všetky slovenské znaky (ľ, š, č, ž, ô, á, é, í, etc.) sú plne funkčné.
-
-**Poznámka o PDF renderovaní:** PDFKit používa štandardné PDF fonty (Helvetica), ktoré majú obmedzenú podporu pre rozšírené UTF-8 znaky. V PDF budú vyzerať normálne, ale ak vidíte kódovanie znakov, skúste:
-
-- Uistiť sa, že váš JSON súbor je v UTF-8 kódovaní
-- Používať len ASCII znaky v prípadoch, kde vidíte problémy
-- Nastaviť jazykové prostredie: `export LANG=sk_SK.UTF-8`
-
-### Problém s Unicode v interaktívnom režime
-
-Ak sa znaky nezobrazia správne v CLI, skúste:
-
-```bash
-export LANG=sk_SK.UTF-8
-npm run dev
-```
+Vstupné JSON súbory používajte v UTF-8. Vygenerované PDF obsahuje vložené fonty Lato s podporou slovenských znakov, takže ich zobrazenie nezávisí od fontov nainštalovaných na počítači, ktorý PDF otvorí.
 
 ## Príkazy
 

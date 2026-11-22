@@ -7,369 +7,404 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const COMPANY_INFO = {
   name: "Amplex s. r. o.",
-  address: "Galvaniho 19032/37 821 04 Bratislava - mestská časť Ružinov",
-  phone: "+421915425052",
+  address: "Galvaniho 19032/37, 821 04 Bratislava - mestská časť Ružinov",
+  phone: "+421 915 425 052",
   email: "kontakt@amplex.sk",
+  website: "amplex.sk",
   ico: "57920222",
   dic: "2123388146",
 };
 
+const LAYOUT = {
+  left: 45,
+  right: 550,
+  width: 505,
+  contentBottom: 765,
+  columns: [
+    { x: 45, width: 34 },
+    { x: 79, width: 246 },
+    { x: 325, width: 90 },
+    { x: 415, width: 135 },
+  ],
+};
+
+const COLORS = {
+  accentStart: "#6D28D9",
+  accentEnd: "#2563EB",
+  border: "#D9D9E0",
+  headerStart: "#F3EDFE",
+  headerEnd: "#EAF1FE",
+  alternate: "#FAF9FC",
+  muted: "#666666",
+  text: "#171717",
+};
+
+function brandGradient(
+  pdfDoc,
+  x,
+  y,
+  width,
+  start = COLORS.accentStart,
+  end = COLORS.accentEnd,
+) {
+  return pdfDoc
+    .linearGradient(x, y, x + width, y)
+    .stop(0, start)
+    .stop(1, end);
+}
+
 export class OfferGenerator {
   constructor() {
-    this.logoPath = path.join(__dirname, "../../public/logo.svg");
+    this.fontPath = path.join(__dirname, "../fonts");
+    this.logoPath = path.join(__dirname, "../assets/amplex-logo.png");
   }
 
   async generatePDF(offerData) {
     return new Promise((resolve, reject) => {
       const pdfDoc = new PDFDocument({
         size: "A4",
-        margin: 50,
+        margin: LAYOUT.left,
         bufferPages: true,
       });
 
-      let yPosition = pdfDoc.page.height - 60;
+      pdfDoc.registerFont("Lato", path.join(this.fontPath, "Lato-Regular.ttf"));
+      pdfDoc.registerFont(
+        "Lato-Bold",
+        path.join(this.fontPath, "Lato-Bold.ttf"),
+      );
 
-      // Draw header
-      this.drawHeader(pdfDoc, yPosition, offerData.offerNumber);
-      yPosition -= 80;
-
-      // Draw addresses
-      yPosition = this.drawAddresses(pdfDoc, yPosition, offerData);
-      yPosition -= 20;
-
-      // Draw offer details
+      let yPosition = this.drawHeader(pdfDoc, 42, offerData.offerNumber);
+      yPosition = this.drawAddresses(pdfDoc, yPosition + 22, offerData) + 22;
       yPosition = this.drawOfferDetails(pdfDoc, yPosition, offerData);
-      yPosition -= 30;
+      yPosition = this.drawTableHeader(pdfDoc, yPosition + 18);
 
-      // Draw table
-      yPosition = this.drawTableHeader(pdfDoc, yPosition);
-      yPosition -= 10;
-
-      // Draw items
       for (let i = 0; i < offerData.items.length; i++) {
         const item = offerData.items[i];
-        item.index = i + 1;
-        const itemHeight = this.getItemHeight(item);
+        const itemHeight = this.getItemHeight(pdfDoc, item);
+        const spaceAfterRow = i === offerData.items.length - 1 ? 100 : 5;
 
-        if (yPosition - itemHeight < 100) {
+        if (yPosition + itemHeight + spaceAfterRow > LAYOUT.contentBottom) {
           pdfDoc.addPage();
-          yPosition = pdfDoc.page.height - 50;
-          yPosition = this.drawTableHeader(pdfDoc, yPosition);
-          yPosition -= 10;
+          yPosition = this.drawTableHeader(pdfDoc, 48);
         }
 
-        yPosition = this.drawTableRow(pdfDoc, yPosition, item);
-        yPosition -= 5;
+        yPosition = this.drawTableRow(pdfDoc, yPosition, item, i + 1) + 5;
       }
 
-      yPosition -= 10;
-      yPosition = this.drawTotals(pdfDoc, yPosition, offerData);
+      this.drawTotals(pdfDoc, yPosition + 12, offerData);
 
-      this.drawFooter(pdfDoc, pdfDoc.page.height - 30);
+      const pageRange = pdfDoc.bufferedPageRange();
+      for (let pageIndex = 0; pageIndex < pageRange.count; pageIndex++) {
+        pdfDoc.switchToPage(pageRange.start + pageIndex);
+        this.drawFooter(pdfDoc, pdfDoc.page.height - 58);
+      }
 
-      // Buffer output
       const chunks = [];
       pdfDoc.on("data", (chunk) => chunks.push(chunk));
-      pdfDoc.on("end", () => {
-        resolve(Buffer.concat(chunks));
-      });
+      pdfDoc.on("end", () => resolve(Buffer.concat(chunks)));
       pdfDoc.on("error", reject);
-
       pdfDoc.end();
     });
   }
 
   drawHeader(pdfDoc, yPosition, offerNumber) {
-    pdfDoc
-      .fontSize(24)
-      .font("Helvetica-Bold")
-      .fillColor("#6D28D9")
-      .text("AMPLEX", 50, yPosition);
+    pdfDoc.image(this.logoPath, LAYOUT.left, yPosition + 1, { width: 30 });
 
     pdfDoc
-      .fontSize(16)
-      .font("Helvetica")
-      .fillColor("#000000")
-      .text(`CENOVÁ PONUKA ${offerNumber}`, 350, yPosition, {
+      .font("Lato-Bold")
+      .fontSize(23)
+      .fillColor(brandGradient(pdfDoc, 82, yPosition, 95))
+      .text("AMPLEX", 82, yPosition + 1);
+
+    pdfDoc
+      .font("Lato-Bold")
+      .fontSize(15)
+      .fillColor(COLORS.text)
+      .text(`CENOVÁ PONUKA ${offerNumber}`, 300, yPosition + 7, {
+        width: LAYOUT.right - 300,
         align: "right",
-        width: 150,
       });
+
+    pdfDoc
+      .rect(LAYOUT.left, yPosition + 39, LAYOUT.width, 2)
+      .fill(brandGradient(pdfDoc, LAYOUT.left, yPosition + 39, LAYOUT.width));
+
+    return yPosition + 53;
   }
 
   drawAddresses(pdfDoc, yPosition, offerData) {
-    const leftX = 50;
-    const rightX = 320;
-    const lineHeight = 14;
-    const startY = yPosition;
+    const columnWidth = 235;
+    const rightX = 315;
 
-    // Supplier section
-    pdfDoc
-      .fontSize(11)
-      .font("Helvetica-Bold")
-      .fillColor("#000000")
-      .text("DODÁVATEĽ", leftX, yPosition);
-    yPosition -= lineHeight;
+    const supplierLines = [
+      { text: COMPANY_INFO.name, bold: true, size: 10 },
+      { text: COMPANY_INFO.address, size: 9 },
+      {
+        text: `IČO: ${COMPANY_INFO.ico}    DIČ: ${COMPANY_INFO.dic}`,
+        size: 9,
+      },
+      { text: COMPANY_INFO.phone, size: 9, icon: "phone" },
+      { text: COMPANY_INFO.email, size: 9, icon: "email" },
+      { text: COMPANY_INFO.website, size: 9, icon: "web" },
+    ];
 
-    pdfDoc.fontSize(10).font("Helvetica");
-    pdfDoc.text(COMPANY_INFO.name, leftX, yPosition);
-    yPosition -= lineHeight;
+    const recipient = offerData.recipient || {};
+    const recipientLines = [
+      { text: recipient.name, bold: true, size: 10 },
+      { text: recipient.address, size: 9 },
+      { text: recipient.city, size: 9 },
+      { text: recipient.country, size: 9 },
+      {
+        text: [
+          recipient.ico && `IČO: ${recipient.ico}`,
+          recipient.dic && `DIČ: ${recipient.dic}`,
+        ]
+          .filter(Boolean)
+          .join("    "),
+        size: 9,
+      },
+    ].filter((line) => line.text);
 
-    pdfDoc.fontSize(9);
-    pdfDoc.text(COMPANY_INFO.address, leftX, yPosition, { width: 250 });
-    yPosition -= lineHeight * 1.5;
-
-    pdfDoc.text(
-      `IČO: ${COMPANY_INFO.ico}  DIČ: ${COMPANY_INFO.dic}`,
-      leftX,
+    const supplierBottom = this.drawAddressColumn(
+      pdfDoc,
+      LAYOUT.left,
       yPosition,
-      { width: 250 },
+      columnWidth,
+      "DODÁVATEĽ",
+      supplierLines,
     );
-    yPosition -= lineHeight * 1.5;
+    const recipientBottom = this.drawAddressColumn(
+      pdfDoc,
+      rightX,
+      yPosition,
+      columnWidth,
+      "ODBERATEĽ",
+      recipientLines,
+    );
 
+    return Math.max(supplierBottom, recipientBottom);
+  }
+
+  drawAddressColumn(pdfDoc, x, yPosition, width, heading, lines) {
     pdfDoc
-      .fontSize(10)
-      .font("Helvetica-Bold")
-      .text("Kontaktné údaje", leftX, yPosition);
-    yPosition -= lineHeight;
+      .font("Lato-Bold")
+      .fontSize(9)
+      .fillColor(COLORS.accentStart)
+      .text(heading, x, yPosition, { width });
 
-    pdfDoc.fontSize(9).font("Helvetica");
-    pdfDoc.text(`📱 ${COMPANY_INFO.phone}`, leftX, yPosition);
-    yPosition -= lineHeight;
-
-    pdfDoc.text(`📧 ${COMPANY_INFO.email}`, leftX, yPosition);
-
-    // Recipient section
-    let rightY = startY;
-    pdfDoc
-      .fontSize(11)
-      .font("Helvetica-Bold")
-      .fillColor("#000000")
-      .text("ODBERATEĽ", rightX, rightY);
-    rightY -= lineHeight;
-
-    pdfDoc.fontSize(10).font("Helvetica");
-    if (offerData.recipient) {
-      pdfDoc.text(offerData.recipient.name || "", rightX, rightY, {
-        width: 200,
-      });
-      rightY -= lineHeight;
-
-      pdfDoc.fontSize(9);
-      if (offerData.recipient.address) {
-        pdfDoc.text(offerData.recipient.address, rightX, rightY, {
-          width: 200,
-        });
-        rightY -= lineHeight;
+    let y = yPosition + 17;
+    for (const line of lines) {
+      const iconWidth = line.icon ? 16 : 0;
+      if (line.icon) {
+        this.drawContactIcon(pdfDoc, line.icon, x, y + 1);
       }
-
-      if (offerData.recipient.city) {
-        pdfDoc.text(offerData.recipient.city, rightX, rightY, { width: 200 });
-        rightY -= lineHeight;
-      }
-
-      if (offerData.recipient.country) {
-        pdfDoc.text(offerData.recipient.country, rightX, rightY, {
-          width: 200,
-        });
-        rightY -= lineHeight;
-      }
-
-      if (offerData.recipient.ico || offerData.recipient.dic) {
-        rightY -= lineHeight;
-        const icoText = offerData.recipient.ico
-          ? `IČO: ${offerData.recipient.ico}`
-          : "";
-        const dicText = offerData.recipient.dic
-          ? `DIČ: ${offerData.recipient.dic}`
-          : "";
-        pdfDoc.text(
-          `${icoText}${icoText && dicText ? "  " : ""}${dicText}`,
-          rightX,
-          rightY,
-          { width: 200 },
-        );
-      }
+      const font = line.bold ? "Lato-Bold" : "Lato";
+      pdfDoc.font(font).fontSize(line.size).fillColor(COLORS.text);
+      const textWidth = width - iconWidth;
+      const height = pdfDoc.heightOfString(line.text, { width: textWidth });
+      pdfDoc.text(line.text, x + iconWidth, y, { width: textWidth });
+      y += height + 3;
     }
 
-    return Math.min(yPosition, rightY) - lineHeight;
+    return y;
+  }
+
+  drawContactIcon(pdfDoc, icon, x, y) {
+    pdfDoc
+      .save()
+      .translate(x, y)
+      .scale(0.5)
+      .lineWidth(1.6)
+      .lineCap("round")
+      .lineJoin("round")
+      .strokeColor(COLORS.accentStart);
+
+    if (icon === "phone") {
+      pdfDoc
+        .path(
+          "M22 16.92V20a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2H7a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.03 9.86a16 16 0 0 0 6 6l1.22-1.22a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z",
+        )
+        .stroke();
+    } else if (icon === "email") {
+      pdfDoc.roundedRect(2, 4, 20, 16, 2).stroke();
+      pdfDoc.path("M2 5L12 13L22 5").stroke();
+    } else if (icon === "web") {
+      pdfDoc.circle(12, 12, 10).stroke();
+      pdfDoc.ellipse(12, 12, 4, 10).stroke();
+      pdfDoc.moveTo(2, 12).lineTo(22, 12).stroke();
+    } else {
+      throw new Error(`Unknown contact icon: ${icon}`);
+    }
+
+    pdfDoc.restore();
   }
 
   drawOfferDetails(pdfDoc, yPosition, offerData) {
-    const lineHeight = 14;
+    const details = [
+      {
+        label: "Dátum vystavenia:",
+        value: offerData.dateIssued || new Date().toLocaleDateString("sk-SK"),
+        x: LAYOUT.left,
+      },
+      {
+        label: "Platnosť ponuky:",
+        value: offerData.validUntil || "",
+        x: 310,
+      },
+    ];
 
-    pdfDoc.fontSize(10).font("Helvetica-Bold").fillColor("#000000");
-    pdfDoc.text("Dátum vystavenia:", 50, yPosition);
-    pdfDoc
-      .font("Helvetica")
-      .text(
-        offerData.dateIssued || new Date().toLocaleDateString("sk-SK"),
-        200,
-        yPosition,
-      );
+    for (const detail of details) {
+      pdfDoc
+        .font("Lato-Bold")
+        .fontSize(9)
+        .fillColor(COLORS.text)
+        .text(detail.label, detail.x, yPosition, { width: 110 });
+      pdfDoc
+        .font("Lato")
+        .fontSize(9)
+        .text(detail.value, detail.x + 115, yPosition, { width: 125 });
+    }
 
-    yPosition -= lineHeight;
-
-    pdfDoc.font("Helvetica-Bold");
-    pdfDoc.text("Platnosť ponuky:", 50, yPosition);
-    pdfDoc.font("Helvetica").text(offerData.validUntil || "", 200, yPosition);
-
-    return yPosition - lineHeight;
+    return yPosition + 26;
   }
 
   drawTableHeader(pdfDoc, yPosition) {
-    const headers = ["Č.", "NÁZOV", "MNOŽSTVO", "CENA BEZ DPH", "SPOLU"];
-    const columnX = [50, 85, 310, 420, 480];
-    const columnWidth = [30, 225, 110, 60, 65];
-
-    // Background
     pdfDoc
-      .rect(50, yPosition - 20, 495, 20)
-      .fillAndStroke("#F5F5F5", "#B3B3B3");
+      .roundedRect(LAYOUT.left, yPosition, LAYOUT.width, 27, 3)
+      .fill(
+        brandGradient(
+          pdfDoc,
+          LAYOUT.left,
+          yPosition,
+          LAYOUT.width,
+          COLORS.headerStart,
+          COLORS.headerEnd,
+        ),
+      );
 
-    // Headers
-    pdfDoc.fontSize(9).font("Helvetica-Bold").fillColor("#000000");
-    for (let i = 0; i < headers.length; i++) {
-      pdfDoc.text(headers[i], columnX[i], yPosition - 17, {
-        width: columnWidth[i],
-        align: i > 2 ? "right" : "left",
+    const headers = ["Č.", "NÁZOV POLOŽKY", "MNOŽSTVO", "CENA"];
+    pdfDoc.font("Lato-Bold").fontSize(8).fillColor(COLORS.text);
+
+    headers.forEach((header, index) => {
+      const column = LAYOUT.columns[index];
+      pdfDoc.text(header, column.x + 5, yPosition + 9, {
+        width: column.width - 10,
+        align: index > 1 ? "right" : "left",
+        lineBreak: false,
       });
-    }
+    });
 
-    return yPosition - 25;
+    return yPosition + 27;
   }
 
-  drawTableRow(pdfDoc, yPosition, item) {
-    const columnX = [50, 85, 310, 420, 480];
-    const columnWidth = [30, 225, 110, 60, 65];
-    const baseHeight = 20;
-    let rowHeight = baseHeight;
+  drawTableRow(pdfDoc, yPosition, item, index) {
+    const rowHeight = this.getItemHeight(pdfDoc, item);
+    const [number, name, quantity, price] = LAYOUT.columns;
 
-    // Calculate height with description
-    if (item.description) {
-      pdfDoc.fontSize(7);
-      const descHeight = pdfDoc.heightOfString(item.description, {
-        width: columnWidth[1] - 10,
-      });
-      rowHeight += descHeight + 5;
-    }
-
-    // Background (alternating)
-    const bgColor = item.index % 2 === 0 ? "#F9F9F9" : "#FFFFFF";
     pdfDoc
-      .rect(50, yPosition - rowHeight, 495, rowHeight)
-      .fill(bgColor)
-      .stroke("#E5E5E5");
+      .rect(LAYOUT.left, yPosition, LAYOUT.width, rowHeight)
+      .fill(index % 2 === 0 ? COLORS.alternate : "#FFFFFF");
+    pdfDoc
+      .moveTo(LAYOUT.left, yPosition + rowHeight)
+      .lineTo(LAYOUT.right, yPosition + rowHeight)
+      .lineWidth(0.5)
+      .strokeColor(COLORS.border)
+      .stroke();
 
-    // Content
-    pdfDoc.fontSize(9).font("Helvetica").fillColor("#000000");
-
-    // Item number
-    pdfDoc.text(String(item.index), columnX[0], yPosition - 16, {
-      width: columnWidth[0],
+    const textY = yPosition + 8;
+    pdfDoc.font("Lato").fontSize(9).fillColor(COLORS.text);
+    pdfDoc.text(String(index), number.x + 3, textY, {
+      width: number.width - 6,
       align: "center",
     });
-
-    // Item name
-    pdfDoc.text(item.name, columnX[1], yPosition - 16, {
-      width: columnWidth[1],
+    pdfDoc.text(item.name || "", name.x + 5, textY, {
+      width: name.width - 10,
     });
-
-    // Quantity
     pdfDoc.text(
       `${item.quantity} ${item.unit || "ks"}`,
-      columnX[2],
-      yPosition - 16,
+      quantity.x + 3,
+      textY,
       {
-        width: columnWidth[2],
+        width: quantity.width - 8,
         align: "right",
       },
     );
-
-    // Price
-    pdfDoc.text(this.formatPrice(item.price), columnX[3], yPosition - 16, {
-      width: columnWidth[3],
+    pdfDoc.text(this.formatPrice(item.price), price.x + 3, textY, {
+      width: price.width - 8,
       align: "right",
     });
 
-    // Total
-    const total = item.quantity * item.price;
-    pdfDoc.text(this.formatPrice(total), columnX[4], yPosition - 16, {
-      width: columnWidth[4],
-      align: "right",
-    });
-
-    // Description
     if (item.description) {
-      pdfDoc.fontSize(7).fillColor("#666666").font("Helvetica");
-      pdfDoc.text(item.description, columnX[1], yPosition - 32, {
-        width: columnWidth[1] - 10,
+      const nameHeight = pdfDoc.heightOfString(item.name || "", {
+        width: name.width - 10,
       });
+      pdfDoc
+        .font("Lato")
+        .fontSize(8)
+        .fillColor(COLORS.muted)
+        .text(item.description, name.x + 5, textY + nameHeight + 2, {
+          width: name.width - 10,
+        });
     }
 
-    return yPosition - rowHeight;
+    return yPosition + rowHeight;
   }
 
   drawTotals(pdfDoc, yPosition, offerData) {
-    let totalAmount = 0;
-    for (const item of offerData.items) {
-      totalAmount += item.quantity * item.price;
-    }
-
-    const boxX = 320;
-    const boxWidth = 225;
-    const boxHeight = 60;
-
-    // Draw box
-    pdfDoc
-      .rect(boxX, yPosition - boxHeight, boxWidth, boxHeight)
-      .stroke("#B3B3B3");
-
-    // Labels and amounts
-    pdfDoc.fontSize(10).font("Helvetica").fillColor("#000000");
-    pdfDoc.text("Spolu bez DPH", boxX + 10, yPosition - 20, {
-      width: boxWidth - 20,
-      align: "left",
-    });
-
-    pdfDoc.fontSize(11).font("Helvetica-Bold");
-    pdfDoc.text(this.formatPrice(totalAmount), boxX + 10, yPosition - 35, {
-      width: boxWidth - 20,
-      align: "right",
-    });
-
-    pdfDoc
-      .fontSize(11)
-      .font("Helvetica-Bold")
-      .text("Spolu", boxX + 10, yPosition - 50, {
-        width: boxWidth - 20,
-        align: "left",
-      });
-
-    pdfDoc.fillColor("#6D28D9");
-    pdfDoc.text(
-      `${this.formatPrice(totalAmount)} EUR`,
-      boxX + 10,
-      yPosition - 60,
-      {
-        width: boxWidth - 20,
-        align: "right",
-      },
+    const totalAmount = offerData.items.reduce(
+      (total, item) => total + item.quantity * item.price,
+      0,
     );
+    const boxX = 320;
+    const boxWidth = LAYOUT.right - boxX;
+    const boxHeight = 76;
 
-    return yPosition - boxHeight - 10;
+    pdfDoc
+      .roundedRect(boxX, yPosition, boxWidth, boxHeight, 3)
+      .lineWidth(1)
+      .strokeColor(COLORS.border)
+      .stroke();
+    pdfDoc
+      .rect(boxX, yPosition, boxWidth, 3)
+      .fill(brandGradient(pdfDoc, boxX, yPosition, boxWidth));
+
+    pdfDoc
+      .font("Lato")
+      .fontSize(9)
+      .fillColor(COLORS.text)
+      .text("Spolu", boxX + 12, yPosition + 11, {
+        width: boxWidth - 24,
+      });
+    pdfDoc
+      .font("Lato-Bold")
+      .fontSize(13)
+      .fillColor(
+        brandGradient(pdfDoc, boxX + 12, yPosition + 29, boxWidth - 24),
+      )
+      .text(`${this.formatPrice(totalAmount)} EUR`, boxX + 12, yPosition + 29, {
+        width: boxWidth - 24,
+        align: "right",
+      });
+    pdfDoc
+      .font("Lato")
+      .fontSize(8)
+      .fillColor(COLORS.muted)
+      .text("Nie sme platcami DPH", boxX + 12, yPosition + 54, {
+        width: boxWidth - 24,
+      });
   }
 
   drawFooter(pdfDoc, yPosition) {
-    pdfDoc.fontSize(8).font("Helvetica").fillColor("#808080");
-    pdfDoc.text(
-      "Spoločnosť je zapísaná v Obchodnom registri Okresného súdu Bratislava, oddiel Sro, vložka č. XXXXX/B",
-      50,
-      yPosition,
-      {
-        width: 495,
-        align: "center",
-      },
-    );
+    pdfDoc
+      .font("Lato")
+      .fontSize(7)
+      .fillColor(COLORS.muted)
+      .text(
+        "Spoločnosť je zapísaná v Obchodnom registri Okresného súdu Bratislava, oddiel Sro, vložka č. Sro/204732/B",
+        LAYOUT.left,
+        yPosition,
+        { width: LAYOUT.width, align: "center" },
+      );
   }
 
   formatPrice(amount) {
@@ -379,11 +414,19 @@ export class OfferGenerator {
     });
   }
 
-  getItemHeight(item) {
-    let height = 20;
+  getItemHeight(pdfDoc, item) {
+    const nameWidth = LAYOUT.columns[1].width - 10;
+    pdfDoc.font("Lato").fontSize(9);
+    let contentHeight = pdfDoc.heightOfString(item.name || "", {
+      width: nameWidth,
+    });
+
     if (item.description) {
-      height += 15; // Approximate description height
+      pdfDoc.fontSize(8);
+      contentHeight +=
+        2 + pdfDoc.heightOfString(item.description, { width: nameWidth });
     }
-    return height;
+
+    return Math.max(26, contentHeight + 16);
   }
 }
