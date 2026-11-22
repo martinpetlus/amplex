@@ -7,7 +7,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const COMPANY_INFO = {
   name: "Amplex s. r. o.",
-  address: "Galvaniho 19032/37, 821 04 Bratislava - mestská časť Ružinov",
+  address: "Galvaniho 19032/37",
+  city: "821 04 Bratislava - mestská časť Ružinov",
   phone: "+421 915 425 052",
   email: "kontakt@amplex.sk",
   website: "amplex.sk",
@@ -22,9 +23,10 @@ const LAYOUT = {
   contentBottom: 765,
   columns: [
     { x: 45, width: 34 },
-    { x: 79, width: 246 },
-    { x: 325, width: 90 },
-    { x: 415, width: 135 },
+    { x: 79, width: 205 },
+    { x: 284, width: 74 },
+    { x: 358, width: 95 },
+    { x: 453, width: 97 },
   ],
 };
 
@@ -139,6 +141,7 @@ export class OfferGenerator {
     const supplierLines = [
       { text: COMPANY_INFO.name, bold: true, size: 10 },
       { text: COMPANY_INFO.address, size: 9 },
+      { text: COMPANY_INFO.city, size: 9 },
       {
         text: `IČO: ${COMPANY_INFO.ico}    DIČ: ${COMPANY_INFO.dic}`,
         size: 9,
@@ -283,7 +286,7 @@ export class OfferGenerator {
         ),
       );
 
-    const headers = ["Č.", "NÁZOV POLOŽKY", "MNOŽSTVO", "CENA"];
+    const headers = ["Č.", "NÁZOV POLOŽKY", "MNOŽSTVO", "CENA", "SPOLU"];
     pdfDoc.font("Lato-Bold").fontSize(8).fillColor(COLORS.text);
 
     headers.forEach((header, index) => {
@@ -300,7 +303,7 @@ export class OfferGenerator {
 
   drawTableRow(pdfDoc, yPosition, item, index) {
     const rowHeight = this.getItemHeight(pdfDoc, item);
-    const [number, name, quantity, price] = LAYOUT.columns;
+    const [number, name, quantity, price, total] = LAYOUT.columns;
 
     pdfDoc
       .rect(LAYOUT.left, yPosition, LAYOUT.width, rowHeight)
@@ -334,6 +337,12 @@ export class OfferGenerator {
       width: price.width - 8,
       align: "right",
     });
+    pdfDoc.text(
+      this.formatPrice(item.quantity * item.price),
+      total.x + 3,
+      textY,
+      { width: total.width - 8, align: "right" },
+    );
 
     if (item.description) {
       const nameHeight = pdfDoc.heightOfString(item.name || "", {

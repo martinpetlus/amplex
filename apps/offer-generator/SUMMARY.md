@@ -153,7 +153,8 @@ Každá ponuka obsahuje:
   - Poradové číslo
   - Názov a popis
   - Množstvo a jednotka
-  - Jedna cena za položku v stĺpci „CENA“
+  - Jednotková cena v stĺpci „CENA“
+  - Celková cena položky (množstvo × cena) v poslednom stĺpci „SPOLU“
 - **Súhrn** - Spolu v EUR a informácia „Nie sme platcami DPH“
 - **Päta** - Právne informácie
 

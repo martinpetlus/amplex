@@ -164,7 +164,8 @@ Ponuka obsahuje:
   - Poradovým číslom
   - Názvom položky
   - Množstvom a jednotkou
-  - Jednou cenou za položku v stĺpci „CENA“
+  - Jednotkovou cenou v stĺpci „CENA“
+  - Celkovou cenou položky (množstvo × cena) v poslednom stĺpci „SPOLU“
 - **Súhrn** - Celková suma a informácia „Nie sme platcami DPH“
 - **Pätu** so súpisom v registri
 
