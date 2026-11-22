@@ -410,7 +410,7 @@ export class OfferGenerator {
       .fontSize(7)
       .fillColor(COLORS.muted)
       .text(
-        "Spoločnosť je zapísaná v Obchodnom registri Okresného súdu Bratislava, oddiel Sro, vložka č. Sro/204732/B",
+        "Spoločnosť je zapísaná v Obchodnom registri Mestského súdu Bratislava III, oddiel: Sro, vložka č. 204732/B",
         LAYOUT.left,
         yPosition,
         { width: LAYOUT.width, align: "center" },
