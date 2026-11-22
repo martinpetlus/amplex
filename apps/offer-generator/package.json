@@ -1,0 +1,14 @@
+{
+  "name": "offer-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Generate PDF price offers for Amplex",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node src/cli.js",
+    "example": "node examples/example.js"
+  },
+  "dependencies": {
+    "pdfkit": "^0.14.0"
+  }
+}

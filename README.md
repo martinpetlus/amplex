@@ -1,42 +1,52 @@
-# Astro Starter Kit: Minimal
+# Amplex
 
-```sh
-pnpm create astro@latest -- --template minimal
+Amplex web project with integrated tools.
+
+## 📁 Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
+├── apps/
+│   └── offer-generator/     # Generátor cenových ponúk PDF
+├── public/                  # Static assets (logo, favicon, etc.)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   └── pages/               # Astro pages
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🎯 Available Apps
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Offer Generator (`apps/offer-generator`)
 
-Any static assets, like images, can be placed in the `public/` directory.
+Automatický generátor cenných ponúk PDF v slovenčine pre Amplex.
+
+**Rýchly začiatok:**
+
+```bash
+cd apps/offer-generator
+npm install
+npm run dev
+```
+
+**Tri spôsoby použitia:**
+
+1. **Interaktívny režim:** `npm run dev`
+2. **Z JSON súboru:** `npm run dev sample-offer.json`
+3. **Programaticky:** Pozrite [src/index.js](apps/offer-generator/src/index.js)
+
+Pozrite [apps/offer-generator/QUICKSTART.md](apps/offer-generator/QUICKSTART.md) pre detaily.
 
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| Command          | Action                                      |
+| :--------------- | :------------------------------------------ |
+| `pnpm install`   | Installs dependencies                       |
+| `pnpm dev`       | Starts local dev server at `localhost:4321` |
+| `pnpm build`     | Build your production site to `./dist/`     |
+| `pnpm preview`   | Preview your build locally, before deploy   |
+| `pnpm astro ...` | Run CLI commands like `astro add`           |
 
 ## 👀 Want to learn more?
 

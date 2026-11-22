@@ -1,0 +1,36 @@
+{
+  "offerNumber": "40260001",
+  "dateIssued": "22.11.2026",
+  "validUntil": "22.12.2026",
+  "recipient": {
+    "name": "Príklad Klient, s.r.o.",
+    "address": "Ulica 123",
+    "city": "811 01 Bratislava",
+    "country": "Slovenská republika",
+    "ico": "12345678",
+    "dic": "1234567890"
+  },
+  "items": [
+    {
+      "name": "Služba 1",
+      "quantity": 5,
+      "unit": "ks",
+      "price": 100.0,
+      "description": "Popis prvej služby"
+    },
+    {
+      "name": "Služba 2",
+      "quantity": 1,
+      "unit": "hod",
+      "price": 150.0,
+      "description": "Popis druhej služby"
+    },
+    {
+      "name": "Produkty a materiál",
+      "quantity": 10,
+      "unit": "m",
+      "price": 25.5,
+      "description": ""
+    }
+  ]
+}

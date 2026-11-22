@@ -13,7 +13,8 @@
     "astro": "astro",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "offer-gen": "pnpm -F offer-generator"
   },
   "lint-staged": {
     "*.{astro,js,ts,mjs,cjs,jsx,tsx,json,css,md,html,yml,yaml}": "prettier --write"
@@ -27,8 +28,10 @@
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
+    "pdfkit": "^0.14.0",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
-    "prettier-plugin-tailwindcss": "^0.8.1"
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.33.0"
   }
 }
