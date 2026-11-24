@@ -418,10 +418,10 @@ export class OfferGenerator {
   }
 
   formatPrice(amount) {
-    return amount.toLocaleString("sk-SK", {
+    return new Intl.NumberFormat("sk-SK", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    });
+    }).format(amount);
   }
 
   getItemHeight(pdfDoc, item) {

@@ -1,7 +1,7 @@
 {
-  "offerNumber": "40260018",
-  "dateIssued": "23.11.2026",
-  "validUntil": "23.01.2027",
+  "offerNumber": "40260019",
+  "dateIssued": "24.11.2026",
+  "validUntil": "31.12.2026",
   "recipient": {
     "name": "KTK Packaging s.r.o.",
     "address": "Farská 25",
@@ -13,17 +13,10 @@
   },
   "items": [
     {
-      "name": "Siemens SIMATIC HMI MTP700, Unified Comfort Panel, touch operation, 7\" display",
+      "name": "Siemens SIMATIC HMI KTP700 Basic DP",
       "quantity": 1,
       "unit": "ks",
-      "price": 1180,
-      "description": ""
-    },
-    {
-      "name": "IBH Link S7 -ETHERNET / MPI prevodník",
-      "quantity": 1,
-      "unit": "ks",
-      "price": 520,
+      "price": 868.4,
       "description": ""
     },
     {
